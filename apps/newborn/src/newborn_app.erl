@@ -15,7 +15,7 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
-    newborn_sup:start_link().
+    newborn_sup:start_link(). % erl -name newborn@127.0.0.1 -setcookie forceX
 
 %%--------------------------------------------------------------------
 stop(_State) ->
