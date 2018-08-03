@@ -20,13 +20,16 @@ start_link() ->
 
 %% @hidden
 init([]) ->
+  % Sets current node's hostname and ensures it is alive before starting ?NODECOUNT slaves
   {ok, _Pid} = net_kernel:start(['newborn@127.0.0.1', longnames]),
   pong = net_adm:ping('newborn@127.0.0.1'),
-  NodeHost = "127.0.0.1",
-  NodeName = "newborn_",
-  NodeOpts = "-setcookie " ++ atom_to_list(erlang:get_cookie()),
-  [slave:start(NodeHost, NodeName ++ integer_to_list(N), NodeOpts) || N <- lists:seq(1, ?NODECOUNT)],
+  [spawn_node("newborn_" ++ integer_to_list(N)) || N <- lists:seq(1, ?NODECOUNT)],
   {ok, no_state}.
+
+spawn_node(NodeName) ->
+  NodeHost = '127.0.0.1',
+  NodeOpts = "-setcookie " ++ atom_to_list(erlang:get_cookie()),
+  slave:start(NodeHost, list_to_atom(NodeName), NodeOpts).
 
 %% @hidden
 handle_call(_Request, _From, State) ->
