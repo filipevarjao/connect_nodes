@@ -29,7 +29,7 @@ init([]) ->
 spawn_node(NodeName) ->
   NodeHost = '127.0.0.1',
   NodeOpts = "-setcookie " ++ atom_to_list(erlang:get_cookie()),
-  slave:start(NodeHost, list_to_atom(NodeName), NodeOpts).
+  slave:start_link(NodeHost, NodeName, NodeOpts).
 
 %% @hidden
 handle_call(_Request, _From, State) ->
