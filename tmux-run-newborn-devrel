@@ -1,5 +1,6 @@
 hosts=(dev1 dev2 dev3)
 
+make devrel
 if tmux list-sessions &> /dev/null; then 
   # tmux sessions exist
   if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
@@ -16,4 +17,3 @@ else
   # tmux not running, need to launch
   tmux new-session $0
 fi
-

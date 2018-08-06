@@ -15,7 +15,8 @@
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
-    newborn_sup:start_link(). % erl -name newborn@127.0.0.1 -setcookie forceX
+    exometer_admin:set_default([newborn,hello_world], counter, []),
+    newborn_sup:start_link().
 
 %%--------------------------------------------------------------------
 stop(_State) ->
