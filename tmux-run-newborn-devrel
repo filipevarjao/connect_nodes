@@ -3,6 +3,8 @@ hosts=(dev1 dev2 dev3)
 
 echo tmux new-window
 
+make devrel
+
 for i in "${hosts[@]}"; do
 tmux split-window -h "_build/${i}/rel/newborn/bin/newborn console"
 tmux select-layout even-vertical > /dev/null
