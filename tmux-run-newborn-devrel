@@ -1,9 +1,12 @@
+#!/bin/bash
+
 hosts=(dev1 dev2 dev3)
 
 make devrel
 if tmux list-sessions &> /dev/null; then 
   # tmux sessions exist
-  if ! { [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; } then
+  if ! [[ "$TERM" = "screen" || "$TERM" = "screen-256color" ]] && [[ -n "$TMUX" ]] 
+  then
      # tmux session exists, need to attach
      tmux a \; new-window $0
   else
