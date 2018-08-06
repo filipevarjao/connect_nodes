@@ -7,6 +7,7 @@ if tmux list-sessions &> /dev/null; then
      tmux a \; new-window $0
   else
      # currently in tmux
+     make devrel
      for i in "${hosts[@]}"; do
      tmux split-window -h "_build/${i}/rel/newborn/bin/newborn console"
      tmux select-layout even-vertical > /dev/null
@@ -16,4 +17,3 @@ else
   # tmux not running, need to launch
   tmux new-session $0
 fi
-
