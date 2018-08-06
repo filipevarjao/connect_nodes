@@ -6,7 +6,9 @@
   {applications,
    [kernel,
     stdlib,
-    gen_rpc
+    gen_rpc,
+    lager,
+    exometer_core
    ]},
   {env,[]},
   {modules, []},
