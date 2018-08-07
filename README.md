@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/filipevarjao/connect_nodes.svg?branch=master)](https://travis-ci.org/filipevarjao/connect_nodes)
+
 newborn
 =====
 
